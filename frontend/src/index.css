@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #14171F;
+  --color-canvas: #F6F5F2;
+  --color-paper: #FFFFFF;
+  --color-line: #E4E2DC;
+
+  --color-accent: #2F5FFF;
+  --color-accent-dark: #1E42C9;
+
+  --color-role-admin: #E0A100;
+  --color-role-web: #2F5FFF;
+  --color-role-graphic: #B34FE0;
+  --color-role-app: #12B76A;
+  --color-role-client: #6B7280;
+
+  --color-status-pending: #9CA3AF;
+  --color-status-assigned: #2F5FFF;
+  --color-status-progress: #E0A100;
+  --color-status-completed: #12B76A;
+  --color-status-rejected: #E5484D;
+
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --radius-card: 10px;
+}
+
