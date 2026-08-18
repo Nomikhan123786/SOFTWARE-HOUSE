@@ -6,19 +6,22 @@ import Login from "./pages/Login";
 
 import UserDashBoard from "./pages/UserDashBoard";
 import StaffDashboard from "./pages/StaffDashboard";
+import { AuthProvider } from "./context/AuthContext";
 
 const App = () => {
   return (
     <>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+      <AuthProvider>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
 
-        <Route path="/dashboard" element={<UserDashBoard />} />
-        <Route path="/staffdashboard" element={<StaffDashboard />} />
-      </Routes>
+          <Route path="/dashboard" element={<UserDashBoard />} />
+          <Route path="/staffdashboard" element={<StaffDashboard />} />
+        </Routes>
+      </AuthProvider>
     </>
   );
 };

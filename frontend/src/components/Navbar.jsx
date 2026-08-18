@@ -9,7 +9,7 @@ const Navbar = () => {
       >
         SoftWare <span className="text-blue-700">House</span>
       </Link>
-      <div>
+      <div className="gap-4">
         <Link
           to="/login"
           className="rounded-md border border-white/20 px-3.5 py-1.5 text-sm font-medium text-white transition hover:bg-white/10"
