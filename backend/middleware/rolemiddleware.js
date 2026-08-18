@@ -4,14 +4,12 @@ const authorize = (...allowedRoles) => {
       return res.status(401).json({ message: "Not authorized" });
     }
     if (!allowedRoles.includes(req.user.role)) {
-      return res
-        .status(403)
-        .json({
-          message: "Forbidden: insufficient permissions for this action",
-        });
+      return res.status(403).json({
+        message: "Forbidden: insufficient permissions for this action",
+      });
     }
     next();
   };
 };
 
-module.exports = { authorize };
+export { authorize };

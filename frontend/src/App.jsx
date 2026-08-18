@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-
+import ProtectedRoute from "./components/ProtectedRoute";
 import UserDashBoard from "./pages/UserDashBoard";
 import StaffDashboard from "./pages/StaffDashboard";
 import { AuthProvider } from "./context/AuthContext";
@@ -18,8 +18,29 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
 
-          <Route path="/dashboard" element={<UserDashBoard />} />
-          <Route path="/staffdashboard" element={<StaffDashboard />} />
+          <Route
+            path="/staff"
+            element={
+              <ProtectedRoute
+                allowedRoles={[
+                  "webdeveloper",
+                  "graphicdesigner",
+                  "appdeveloper",
+                ]}
+              >
+                <StaffDashboard />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute allowedRoles={["user"]}>
+                <UserDashBoard />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </AuthProvider>
     </>

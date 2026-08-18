@@ -51,36 +51,31 @@ const userSchema = new mongoose.Schema(
 
 // hash password before saving user
 
-userSchema.pre("save", async function (next) {
+userSchema.pre("save", async function () {
   if (!this.isModified("password")) {
-    return next();
+    return;
   }
-  try {
-    const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password, salt);
-    next();
-  } catch (error) {
-    next(error);
-  }
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
 });
 
 //compare password
 
-userSchema.methods.comparePassword = async function (candidte) {
+userSchema.methods.comparePassword = async function (candidate) {
   return await bcrypt.compare(candidate, this.password);
 };
 
 // Safe object method
 
 userSchema.methods.toSafeObject = function () {
-    return{
-   id : this._id,
-   name : this.name,
-   email : this.email,
-   role : this.role,
-   isActive : this.isActive,
-    };
+  return {
+    id: this._id,
+    name: this.name,
+    email: this.email,
+    role: this.role,
+    isActive: this.isActive,
+  };
 };
 
-module.exports = mongoose.models("User",userSchema)
-module.exports.ROLES = ROLES;
+export default mongoose.model("User", userSchema);
+export { ROLES };
