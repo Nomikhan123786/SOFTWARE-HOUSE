@@ -1,6 +1,22 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
+const ROLE_META = {
+  admin: { lable: "Admin", color: "bg-role-admin" },
+  webdeveloper: { lable: "Web Developer", color: "bg-role-web" },
+  appdeveloper: { lable: "App Developer", color: "bg-role-app" },
+  graphicdesigner: { lable: "Graphic Designer", color: "bg-role-graphic" },
+  user: { lable: "user", color: "bg-role-client" },
+};
 const Navbar = () => {
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
+
   return (
     <nav className="flex items-center sticky top-0  z-50  justify-between border-b border-line  bg-gray-900 px-6 py-3.5 sm:px-8">
       <Link
@@ -22,7 +38,10 @@ const Navbar = () => {
         >
           Register
         </Link>
-        <button className="rounded-md border border-white/20 px-3.5 py-1.5 text-sm font-medium text-white transition hover:bg-white/10">
+        <button
+          onClick={handleLogout}
+          className="rounded-md border border-white/20 px-3.5 py-1.5 text-sm font-medium text-white transition hover:bg-white/10"
+        >
           Logout
         </button>
       </div>
