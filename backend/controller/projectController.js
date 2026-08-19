@@ -42,3 +42,18 @@ const createRequest = async (req, res) => {
       .json({ message: "Failed to create request", error: err.message });
   }
 };
+
+//  Only user view their project
+
+const getRelevantProjects = async (req, res) => {
+  const myType = ROLE_TO_TYPE[(req, res)];
+  if (!myType) return res.status(403).json({ message: "Not a staff role." });
+  const projecs = await Project.find({
+    projectType: myType,
+    $or: [{ assignedTo: req.user._id }, { assignedTo: null }],
+  });
+  populate("requestedBy", "name email")
+    .populate("assignedTo", "name email role")
+    .sort({ createdAt: -1 });
+  res.json({ projects });
+};
