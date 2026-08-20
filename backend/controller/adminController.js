@@ -1,5 +1,5 @@
-import User from "../models/User";
-import Project from "../models/Project";
+import User from "../models/User.js";
+import Project from "../models/Project.js";
 const STAFF_ROLES = ["webdeveloper", "graphicdesigner", "appdeveloper"];
 
 // Admin create the staff
@@ -115,7 +115,7 @@ const assignRequest = async (req, res) => {
   res.json({ message: "Project request updated", project: populated });
 };
 
-export default {
+export {
   createStaff,
   getAllStaff,
   getAllRequests,

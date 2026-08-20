@@ -79,17 +79,35 @@ const UserDashBoard = () => {
           <label className="mt-4 block text-sm font-medium text-ink/80">
             Title
           </label>
-          <input required className={inputClass} />
+          <input
+            required
+            className={inputClass}
+            value={form.title}
+            onChange={(e) => setForm({ ...form, title: e.target.value })}
+            className={inputClass}
+          />
 
           <label className="mt-4 block text-sm font-medium text-ink/80">
             Description
           </label>
-          <textarea required rows={4} className={inputClass} />
+          <textarea
+            required
+            className={inputClass}
+            value={form.description}
+            onChange={(e) => setForm({ ...form, description: e.target.value })}
+            rows={4}
+            className={inputClass}
+          />
 
           <label className="mt-4 block text-sm font-medium text-ink/80">
             Project type
           </label>
-          <select className={inputClass}>
+          <select
+            className={inputClass}
+            value={form.projectType}
+            onChange={(e) => setForm({ ...form, projectType: e.target.value })}
+            className={inputClass}
+          >
             <option value="web">Website (Web Developer)</option>
             <option value="graphic">Graphic Design (Graphic Designer)</option>
             <option value="app">Mobile App (App Developer)</option>
@@ -98,12 +116,22 @@ const UserDashBoard = () => {
           <label className="mt-4 block text-sm font-medium text-ink/80">
             Budget (optional)
           </label>
-          <input type="number" className={inputClass} />
+          <input
+            type="number"
+            value={form.budget}
+            onChange={(e) => setForm({ ...form, budget: e.target.value })}
+            className={inputClass}
+          />
 
           <label className="mt-4 block text-sm font-medium text-ink/80">
             Deadline (optional)
           </label>
-          <input type="date" className={inputClass} />
+          <input
+            type="date"
+            value={form.deadline}
+            onChange={(e) => setForm({ ...form, deadline: e.target.value })}
+            className={inputClass}
+          />
 
           <button
             disabled={submitting}

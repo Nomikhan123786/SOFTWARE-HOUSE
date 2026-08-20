@@ -3,10 +3,11 @@ import { Router } from "express";
 import { protect } from "../middleware/authMiddleware.js";
 import { authorize } from "../middleware/rolemiddleware.js";
 import {
-  createRequest,
-  getMyRequests,
-  getRelevantProjects,
-  updateRelevantProject,
+  createStaff,
+  getAllStaff,
+  getAllRequests,
+  setStaffActive,
+  assignRequest,
 } from "../controller/adminController.js";
 
 const router = Router();
