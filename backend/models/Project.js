@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 // projectType which demand by client
 
-const PROJECT_TYPE = ["web", "graphic", "app"];
+const PROJECT_TYPES = ["web", "graphic", "app"];
 const STATUSES = [
   "pending",
   "assigned",

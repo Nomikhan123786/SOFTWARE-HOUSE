@@ -1,4 +1,4 @@
-import Project from "../models/Project";
+import Project from "../models/Project.js";
 
 const TYPE_TO_ROLE = {
   web: "webdeveloper",
@@ -113,7 +113,7 @@ const updateRelevantProject = async (req, res) => {
   res.json({ message: "Project updated", project: populated });
 };
 
-export default {
+export {
   createRequest,
   getMyRequests,
   getRelevantProjects,
