@@ -7,6 +7,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import UserDashBoard from "./pages/UserDashBoard";
 import StaffDashboard from "./pages/StaffDashboard";
 import { AuthProvider } from "./context/AuthContext";
+import AdminDashboard from "./pages/AdminDashboard";
 
 const App = () => {
   return (
@@ -38,6 +39,15 @@ const App = () => {
             element={
               <ProtectedRoute allowedRoles={["user"]}>
                 <UserDashBoard />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute allowedRoles={["admin"]}>
+                <AdminDashboard />
               </ProtectedRoute>
             }
           />

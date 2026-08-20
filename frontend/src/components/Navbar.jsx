@@ -23,7 +23,7 @@ const Navbar = () => {
         to="/"
         className="font-display text-lg font-semibold tracking-tight text-white"
       >
-        SoftWare <span className="text-blue-700">House</span>
+        SOFT <span className="text-blue-700">TECH</span>
       </Link>
       {user ? (
         <>

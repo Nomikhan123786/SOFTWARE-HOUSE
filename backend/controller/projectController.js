@@ -54,16 +54,24 @@ const getMyRequests = async (req, res) => {
 //  Staff  view their assigned project
 
 const getRelevantProjects = async (req, res) => {
-  const myType = ROLE_TO_TYPE[(req, res)];
-  if (!myType) return res.status(403).json({ message: "Not a staff role." });
-  const projecs = await Project.find({
-    projectType: myType,
-    $or: [{ assignedTo: req.user._id }, { assignedTo: null }],
-  });
-  populate("requestedBy", "name email")
-    .populate("assignedTo", "name email role")
-    .sort({ createdAt: -1 });
-  res.json({ projects });
+  try {
+    const myType = ROLE_TO_TYPE[req.user.role];
+    if (!myType) return res.status(403).json({ message: "Not a staff role." });
+
+    const projects = await Project.find({
+      projectType: myType,
+      $or: [{ assignedTo: req.user._id }, { assignedTo: null }],
+    })
+      .populate("requestedBy", "name email")
+      .populate("assignedTo", "name email role")
+      .sort({ createdAt: -1 });
+
+    res.json({ projects });
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: "Failed to fetch projects", error: err.message });
+  }
 };
 
 // only staff update status
