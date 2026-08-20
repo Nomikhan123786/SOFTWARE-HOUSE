@@ -3,7 +3,9 @@ import dotenv from "dotenv";
 import cors from "cors";
 import dns from "dns";
 import connectDB from "./config/db.js";
+
 import authRoutes from "./routes/authRoutes.js";
+import adminRoutes from "./routes/adminRoutes";
 import projectRoute from "./routes/projectRoute.js";
 
 dotenv.config();
@@ -15,6 +17,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
+app.use("/api/admin", adminRoutes);
 app.use("/api/projects", projectRoute);
 
 const PORT = process.env.PORT || 5000;
