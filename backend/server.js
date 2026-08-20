@@ -13,7 +13,15 @@ dns.setServers(["1.1.1.1", "8.8.8.8"]);
 
 connectDB();
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://software-house-kappa.vercel.app/",
+    ],
+    credentials: true,
+  }),
+);
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
